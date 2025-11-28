@@ -483,7 +483,7 @@ GUMP includes 16 filters for data sanitization and transformation:
 
 | Filter                 | Description                                                                                                           |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| **noise_words**        | Replace noise words in a string (<http://tax.cchgroup.com/help/Avoiding_noise_words_in_your_search.htm>).               |
+| **noise_words**        | Replace noise words in a string (http://tax.cchgroup.com/help/Avoiding_noise_words_in_your_search.htm).               |
 | **rmpunctuation**      | Remove all known punctuation from a string.                                                                           |
 | **urlencode**          | Sanitize the string by urlencoding characters.                                                                        |
 | **htmlencode**         | Sanitize the string by converting HTML characters to their HTML entities.                                             |
