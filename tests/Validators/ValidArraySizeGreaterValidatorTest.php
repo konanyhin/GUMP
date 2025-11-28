@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class ValidArraySizeGreaterValidatorTest extends BaseTestCase
 {
-    const RULE = 'valid_array_size_greater,3';
+    public const RULE = 'valid_array_size_greater,3';
 
     public function testWhenEqualIsSuccess()
     {
@@ -32,21 +30,21 @@ class ValidArraySizeGreaterValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, []));
+        $this->assertTrue($this->validate(self::RULE, []));
     }
 
     public function testWhenInputIsEmptyAndRequiredIsError()
     {
-         $this->assertEquals(
-             $this->validate('required|'.self::RULE, []),
-             [
-                 [
-                     'field' => 'test',
-                     'value' => [],
-                     'rule' => 'required',
-                     'params' => []
-                 ]
-             ]
-         );
+        $this->assertEquals(
+            $this->validate('required|'.self::RULE, []),
+            [
+                [
+                    'field' => 'test',
+                    'value' => [],
+                    'rule' => 'required',
+                    'params' => [],
+                ],
+            ]
+        );
     }
 }

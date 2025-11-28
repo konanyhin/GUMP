@@ -2,10 +2,7 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
-use Mockery as m;
 
 /**
  * Class MinLenValidatorTest
@@ -31,6 +28,6 @@ class MinLenValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate('min_len,2', ''));
+        $this->assertTrue($this->validate('min_len,2', ''));
     }
 }

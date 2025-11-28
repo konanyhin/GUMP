@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => '{field} mező kötelező.',
     'valid_email'              => '{field} mezőnek valós email címnek kell lennie.',
     'max_len'                  => '{field} mező legfeljebb {param} karakter hosszú lehet.',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => '{field} mezőnek camelCase formátumúnak kell lennie',
     'snake_case'               => '{field} mezőnek snake_case formátumúnak kell lennie',
     'url_slug'                 => '{field} mezőnek érvényes URL slug formátumúnak kell lennie',
-);
+];

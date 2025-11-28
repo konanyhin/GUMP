@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class UpperCaseFilterTest extends BaseTestCase
 {
-    const FILTER = 'upper_case';
+    public const FILTER = 'upper_case';
 
     /**
      * @dataProvider successProvider
@@ -31,40 +29,40 @@ class UpperCaseFilterTest extends BaseTestCase
             ['hello', 'HELLO'],
             ['Hello World', 'HELLO WORLD'],
             ['mixed CaSe Text', 'MIXED CASE TEXT'],
-            
+
             // Already uppercase
             ['ALREADY UPPER', 'ALREADY UPPER'],
-            
+
             // Special characters (should remain unchanged)
             ['hello!@#$%', 'HELLO!@#$%'],
             ['test 123', 'TEST 123'],
-            
+
             // Unicode characters
             ['café', 'CAFÉ'],
             ['naïve', 'NAÏVE'],
             ['résumé', 'RÉSUMÉ'],
-            
+
             // German umlauts
             ['müller', 'MÜLLER'],
             // Note: straße -> STRASSE vs STRAßE depends on PHP version/locale
             // Removing this test case for cross-version compatibility
-            
+
             // Empty and whitespace
             ['', ''],
             ['   ', '   '],
             [' test ', ' TEST '],
-            
+
             // With newlines and tabs
             ["hello\nworld", "HELLO\nWORLD"],
             ["tab\there", "TAB\tHERE"],
-            
+
             // Numbers and symbols (unchanged)
             ['test123', 'TEST123'],
             ['price: $99.99', 'PRICE: $99.99'],
-            
+
             // Mixed content
             ['John.Doe@Example.COM', 'JOHN.DOE@EXAMPLE.COM'],
-            
+
             // Single characters
             ['a', 'A'],
             ['Z', 'Z'],
@@ -90,7 +88,7 @@ class UpperCaseFilterTest extends BaseTestCase
     {
         $result = $this->filter(self::FILTER, true);
         $this->assertEquals('1', $result);
-        
+
         $result = $this->filter(self::FILTER, false);
         $this->assertEquals('', $result);
     }

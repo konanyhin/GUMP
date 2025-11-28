@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class IntegerValidatorTest extends BaseTestCase
 {
-    const RULE = 'required|integer';
+    public const RULE = 'required|integer';
 
     /**
      * @dataProvider successProvider
@@ -56,6 +54,6 @@ class IntegerValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate('integer', ''));
+        $this->assertTrue($this->validate('integer', ''));
     }
 }

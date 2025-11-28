@@ -2,8 +2,8 @@
 
 namespace Tests\Validators;
 
-use Tests\BaseTestCase;
 use GUMP;
+use Tests\BaseTestCase;
 
 class CamelCaseValidatorTest extends BaseTestCase
 {
@@ -17,14 +17,14 @@ class CamelCaseValidatorTest extends BaseTestCase
             'firstName',
             'a',
             'aB',
-            'myVar123'
+            'myVar123',
         ];
 
         foreach ($validCamelCase as $value) {
             $this->assertTrue(GUMP::is_valid([
-                'variable' => $value
+                'variable' => $value,
             ], [
-                'variable' => 'camel_case'
+                'variable' => 'camel_case',
             ]), "Failed asserting that '$value' is valid camelCase");
         }
     }
@@ -40,14 +40,14 @@ class CamelCaseValidatorTest extends BaseTestCase
             'camelCase-mixed',
             'camelCase with spaces',
             '123startWithNumber',
-            ''
+            '',
         ];
 
         foreach ($invalidCamelCase as $value) {
             $this->assertNotSame(true, GUMP::is_valid([
-                'variable' => $value
+                'variable' => $value,
             ], [
-                'variable' => 'required|camel_case'
+                'variable' => 'required|camel_case',
             ]), "Failed asserting that '$value' is invalid camelCase");
         }
     }

@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class RequiredValidatorTest extends BaseTestCase
 {
-    const RULE = 'required';
+    public const RULE = 'required';
     /**
      * @dataProvider successProvider
      */
@@ -53,7 +51,7 @@ class RequiredValidatorTest extends BaseTestCase
     public function testItFailsWhenFieldIsNotPresent()
     {
         $result = $this->gump->validate([], [
-            'test' => self::RULE
+            'test' => self::RULE,
         ]);
 
         $this->assertNotTrue($result);
@@ -62,30 +60,30 @@ class RequiredValidatorTest extends BaseTestCase
     public function testRequiredValidatorsReturnRightErrorStructureWhenFieldIsNotPresent()
     {
         $result = $this->gump->validate([], [
-            'test' => 'required'
+            'test' => 'required',
         ]);
 
         $this->assertEquals([[
             'field' => 'test',
             'value' => null,
             'rule' => 'required',
-            'params' => []
+            'params' => [],
         ]], $result);
     }
 
     public function testRequiredValidatorsReturnRightErrorStructureWhenFieldIsPresentButItsEmpty()
     {
         $result = $this->gump->validate([
-            'test' => ''
+            'test' => '',
         ], [
-            'test' => 'required'
+            'test' => 'required',
         ]);
 
         $this->assertEquals([[
             'field' => 'test',
             'value' => '',
             'rule' => 'required',
-            'params' => []
+            'params' => [],
         ]], $result);
     }
 }

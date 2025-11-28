@@ -1,5 +1,6 @@
 <?php
-return array(
+
+return [
     'required'             => 'Het veld {field} is verplicht',
     'valid_email'          => 'Het veld {field} moet een geldige e-mail zijn',
     'max_len'              => 'Het veld {field} moet een aantal tekens van {param} of minder hebben',
@@ -90,4 +91,4 @@ return array(
     'camel_case'               => 'Het veld {field} moet in camelCase formaat zijn',
     'snake_case'               => 'Het veld {field} moet in snake_case formaat zijn',
     'url_slug'                 => 'Het veld {field} moet een geldig URL slug formaat zijn',
-);
+];

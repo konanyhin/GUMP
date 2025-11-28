@@ -2,10 +2,7 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
-use Mockery as m;
 
 /**
  * Class ValidCcValidatorTest
@@ -14,7 +11,7 @@ use Mockery as m;
  */
 class ValidCcValidatorTest extends BaseTestCase
 {
-    const RULE = 'valid_cc';
+    public const RULE = 'valid_cc';
 
     /**
      * @dataProvider successProvider
@@ -50,6 +47,6 @@ class ValidCcValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

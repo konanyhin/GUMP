@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'     => '{field} là bắt buộc',
     'valid_email'       => '{field} phải là địa chỉ email hợp lệ',
     'max_len'      => '{field} cần phải có {param} ký tự trở xuống',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => '{field} phải ở định dạng camelCase',
     'snake_case'               => '{field} phải ở định dạng snake_case',
     'url_slug'                 => '{field} phải là định dạng URL slug hợp lệ',
-);
+];

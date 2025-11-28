@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class StreetAddressValidatorTest extends BaseTestCase
 {
-    const RULE = 'street_address';
+    public const RULE = 'street_address';
 
     /**
      * @dataProvider successProvider
@@ -50,6 +48,6 @@ class StreetAddressValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

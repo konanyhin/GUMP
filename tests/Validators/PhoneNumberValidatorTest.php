@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class PhoneNumberValidatorTest extends BaseTestCase
 {
-    const RULE = 'phone_number';
+    public const RULE = 'phone_number';
 
     /**
      * @dataProvider successProvider
@@ -54,6 +52,6 @@ class PhoneNumberValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

@@ -5,18 +5,18 @@ use GUMP\EnvHelpers;
 
 /**
  * GUMP - A Fast PHP Data Validation & Filtering Library
- * 
- * GUMP is a standalone PHP data validation and filtering library that makes validating 
- * any data easy and painless without the reliance on a framework. Supports 41 validators, 
- * 15+ filters, internationalization (19 languages), and custom validators/filters.
- * 
+ *
+ * GUMP is a standalone PHP data validation and filtering library that makes validating
+ * any data easy and painless without the reliance on a framework. Supports 76 validators,
+ * 16 filters, internationalization (19 languages), and custom validators/filters.
+ *
  * @package GUMP
  * @version 1.x
  * @author Sean Nieuwoudt <sean@wixel.net>
  * @copyright 2013-2025 Sean Nieuwoudt
  * @license MIT
  * @link https://github.com/wixel/gump
- * 
+ *
  * @since 1.0
  */
 class GUMP
@@ -106,14 +106,14 @@ class GUMP
 
     /**
      * Basic HTML tags allowed in the basic_tags filter.
-     * 
+     *
      * @var string
      */
     public static $basic_tags = '<br><p><a><strong><b><i><em><img><blockquote><code><dd><dl><hr><h1><h2><h3><h4><h5><h6><label><ul><li><span><sub><sup>';
 
     /**
      * English noise words used in the noise_words filter.
-     * 
+     *
      * @var string
      */
     public static $en_noise_words = "about,after,all,also,an,and,another,any,are,as,at,be,because,been,before,
@@ -127,21 +127,21 @@ class GUMP
 
     /**
      * Regex pattern for alpha characters including international characters.
-     * 
+     *
      * @var string
      */
     private static $alpha_regex = 'a-zÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖßÙÚÛÜÝŸÑàáâãäåçèéêëìíîïðòóôõöùúûüýÿñ';
 
     /**
      * Values that are considered TRUE in boolean validation and filtering.
-     * 
+     *
      * @var array
      */
     public static $trues = ['1', 1, 'true', true, 'yes', 'on'];
-    
+
     /**
      * Values that are considered FALSE in boolean validation and filtering.
-     * 
+     *
      * @var array
      */
     public static $falses = ['0', 0, 'false', false, 'no', 'off'];
@@ -233,6 +233,7 @@ class GUMP
     public static function filter_input(array $data, array $filters)
     {
         $gump = self::get_instance();
+
         return $gump->filter($data, $filters);
     }
 
@@ -561,13 +562,13 @@ class GUMP
         if (is_array($rule)) {
             return [
                 'rule' => $rule[0],
-                'param' => $this->parse_rule_params($rule[1] ?? [])
+                'param' => $this->parse_rule_params($rule[1] ?? []),
             ];
         }
 
         $result = [
             'rule' => $rule,
-            'param' => []
+            'param' => [],
         ];
 
         if (strpos($rule, self::$rules_parameters_delimiter) !== false) {
@@ -614,10 +615,12 @@ class GUMP
             $found = array_filter($rules, function ($item) use ($require_type_of_rules) {
                 return in_array($item[0], $require_type_of_rules);
             });
+
             return count($found) > 0;
         }
 
         $found = array_values(array_intersect($require_type_of_rules, $rules));
+
         return count($found) > 0;
     }
 
@@ -727,7 +730,7 @@ class GUMP
         $method = self::filter_to_method($rule);
 
         // use native filters
-        if (is_callable(array($this, $method))) {
+        if (is_callable([$this, $method])) {
             return $this->$method($value, $rule_params);
         }
 
@@ -759,7 +762,7 @@ class GUMP
             'field' => $field,
             'value' => $value,
             'rule' => $rule,
-            'params' => $rule_params
+            'params' => $rule_params,
         ];
     }
 
@@ -855,6 +858,7 @@ class GUMP
     private function get_custom_error_message(string $field, string $rule)
     {
         $rule_name = str_replace('validate_', '', $rule);
+
         return $this->fields_error_messages[$field][$rule_name] ?? null;
     }
 
@@ -883,7 +887,7 @@ class GUMP
 
         $replace = [
             '{field}' => $field,
-            '{param}' => implode(', ', $params)
+            '{param}' => implode(', ', $params),
         ];
 
         foreach ($params as $key => $value) {
@@ -918,6 +922,7 @@ class GUMP
 
         $transformer = static function ($replace) use ($field_class) {
             $replace['{field}'] = sprintf('<span class="%s">%s</span>', $field_class, $replace['{field}']);
+
             return $replace;
         };
 
@@ -977,7 +982,7 @@ class GUMP
                 if (is_array($input[$field])) {
                     $input_array = &$input[$field];
                 } else {
-                    $input_array = array(&$input[$field]);
+                    $input_array = [&$input[$field]];
                 }
 
                 foreach ($input_array as &$value) {
@@ -1100,7 +1105,6 @@ class GUMP
         return filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     }
 
-
     /**
      * Sanitize the string by removing any script tags.
      *
@@ -1123,6 +1127,7 @@ class GUMP
     private static function polyfill_filter_var_string($value)
     {
         $str = preg_replace('/\x00|<[^>]*>?/', '', $value);
+
         return (string)str_replace(["'", '"'], ['&#39;', '&#34;'], $str);
     }
 
@@ -1222,6 +1227,7 @@ class GUMP
     protected function filter_slug($value, array $params = [])
     {
         $delimiter = '-';
+
         return mb_strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $value))))), $delimiter));
     }
 
@@ -1734,7 +1740,7 @@ class GUMP
             'H' => 17, 'I' => 18, 'J' => 19, 'K' => 20, 'L' => 21, 'M' => 22,
             'N' => 23, 'O' => 24, 'P' => 25, 'Q' => 26, 'R' => 27, 'S' => 28,
             'T' => 29, 'U' => 30, 'V' => 31, 'W' => 32, 'X' => 33, 'Y' => 34,
-            'Z' => 35, 'B' => 11
+            'Z' => 35, 'B' => 11,
         ];
 
         if (!preg_match("/\A[A-Z]{2}\d{2} ?[A-Z\d]{4}( ?\d{4}){1,} ?\d{1,4}\z/", $value)) {
@@ -1987,9 +1993,9 @@ class GUMP
      */
     protected function validate_valid_json_string($field, array $input, array $params = [], $value = null)
     {
-         return is_string($input[$field])
-             && is_array(json_decode($value, true))
-             && (json_last_error() == JSON_ERROR_NONE);
+        return is_string($input[$field])
+            && is_array(json_decode($value, true))
+            && (json_last_error() == JSON_ERROR_NONE);
     }
 
     /**
@@ -2085,13 +2091,13 @@ class GUMP
         if (count($parts) !== 3) {
             return false;
         }
-        
+
         foreach ($parts as $part) {
             if (!preg_match('/^[A-Za-z0-9_-]+$/', $part)) {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -2099,7 +2105,7 @@ class GUMP
      * Validate hash format for specified algorithm.
      *
      * @example_parameter md5
-     * @example_parameter sha1  
+     * @example_parameter sha1
      * @example_parameter sha256
      *
      * @param string $field
@@ -2112,14 +2118,14 @@ class GUMP
     protected function validate_hash($field, array $input, array $params = [], $value = null)
     {
         $algorithm = $params[0] ?? 'md5';
-        
+
         $patterns = [
             'md5' => '/^[a-f0-9]{32}$/i',
-            'sha1' => '/^[a-f0-9]{40}$/i', 
+            'sha1' => '/^[a-f0-9]{40}$/i',
             'sha256' => '/^[a-f0-9]{64}$/i',
-            'sha512' => '/^[a-f0-9]{128}$/i'
+            'sha512' => '/^[a-f0-9]{128}$/i',
         ];
-        
+
         return isset($patterns[$algorithm]) && preg_match($patterns[$algorithm], $value) > 0;
     }
 
@@ -2141,15 +2147,15 @@ class GUMP
             '/[\'";]/i',
             '/--/i',
             '/\/\*/i',
-            '/\*\//i'
+            '/\*\//i',
         ];
-        
+
         foreach ($patterns as $pattern) {
             if (preg_match($pattern, $value)) {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -2173,15 +2179,15 @@ class GUMP
             '/<object[^>]*>.*?<\/object>/is',
             '/<embed[^>]*>/i',
             '/expression\s*\(/i',
-            '/vbscript:/i'
+            '/vbscript:/i',
         ];
-        
+
         foreach ($patterns as $pattern) {
             if (preg_match($pattern, $value)) {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -2246,10 +2252,12 @@ class GUMP
     {
         if (preg_match('/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i', $value, $matches)) {
             $r = (int)$matches[1];
-            $g = (int)$matches[2]; 
+            $g = (int)$matches[2];
             $b = (int)$matches[3];
+
             return $r >= 0 && $r <= 255 && $g >= 0 && $g <= 255 && $b >= 0 && $b <= 255;
         }
+
         return false;
     }
 
@@ -2313,8 +2321,9 @@ class GUMP
     {
         $currencies = [
             'USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD',
-            'MXN', 'SGD', 'HKD', 'NOK', 'TRY', 'ZAR', 'BRL', 'INR', 'KRW', 'RUB'
+            'MXN', 'SGD', 'HKD', 'NOK', 'TRY', 'ZAR', 'BRL', 'INR', 'KRW', 'RUB',
         ];
+
         return in_array($value, $currencies);
     }
 
@@ -2429,7 +2438,7 @@ class GUMP
     protected function validate_postal_code($field, array $input, array $params = [], $value = null)
     {
         $country = $params[0] ?? 'US';
-        
+
         $patterns = [
             'US' => '/^\d{5}(-\d{4})?$/',
             'CA' => '/^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$/',
@@ -2437,9 +2446,9 @@ class GUMP
             'DE' => '/^\d{5}$/',
             'FR' => '/^\d{5}$/',
             'AU' => '/^\d{4}$/',
-            'JP' => '/^\d{3}-\d{4}$/'
+            'JP' => '/^\d{3}-\d{4}$/',
         ];
-        
+
         return isset($patterns[$country]) && preg_match($patterns[$country], $value) > 0;
     }
 
@@ -2458,8 +2467,10 @@ class GUMP
         if (preg_match('/^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)$/', $value, $matches)) {
             $lat = (float)$matches[1];
             $lng = (float)$matches[2];
+
             return $lat >= -90 && $lat <= 90 && $lng >= -180 && $lng <= 180;
         }
+
         return false;
     }
 
@@ -2478,6 +2489,7 @@ class GUMP
     protected function validate_future_date($field, array $input, array $params = [], $value = null)
     {
         $timestamp = strtotime($value);
+
         return $timestamp !== false && $timestamp > time();
     }
 
@@ -2494,6 +2506,7 @@ class GUMP
     protected function validate_past_date($field, array $input, array $params = [], $value = null)
     {
         $timestamp = strtotime($value);
+
         return $timestamp !== false && $timestamp < time();
     }
 
@@ -2514,6 +2527,7 @@ class GUMP
             return false;
         }
         $dayOfWeek = date('N', $timestamp);
+
         return $dayOfWeek >= 1 && $dayOfWeek <= 5;
     }
 
@@ -2549,15 +2563,15 @@ class GUMP
         if (count($params) < 2) {
             return false;
         }
-        
+
         $timestamp = strtotime($value);
         $startTimestamp = strtotime($params[0]);
         $endTimestamp = strtotime($params[1]);
-        
+
         if ($timestamp === false || $startTimestamp === false || $endTimestamp === false) {
             return false;
         }
-        
+
         return $timestamp >= $startTimestamp && $timestamp <= $endTimestamp;
     }
 
@@ -2608,7 +2622,7 @@ class GUMP
         if (!is_numeric($value)) {
             return false;
         }
-        
+
         $num = (int)$value;
         if ($num < 2) {
             return false;
@@ -2619,13 +2633,13 @@ class GUMP
         if ($num % 2 === 0) {
             return false;
         }
-        
+
         for ($i = 3; $i <= sqrt($num); $i += 2) {
             if ($num % $i === 0) {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -2646,7 +2660,7 @@ class GUMP
     protected function validate_word_count($field, array $input, array $params = [], $value = null)
     {
         $wordCount = str_word_count($value);
-        
+
         for ($i = 0; $i < count($params); $i += 2) {
             if ($params[$i] === 'min' && isset($params[$i + 1])) {
                 if ($wordCount < (int)$params[$i + 1]) {
@@ -2659,7 +2673,7 @@ class GUMP
                 }
             }
         }
-        
+
         return true;
     }
 

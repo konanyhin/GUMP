@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -25,6 +23,6 @@ class AlphaNumericValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate('alpha_numeric', ''));
+        $this->assertTrue($this->validate('alpha_numeric', ''));
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class ValidEmailValidatorTest extends BaseTestCase
 {
-    const RULE = 'valid_email';
+    public const RULE = 'valid_email';
 
     public function testSuccess()
     {
@@ -27,6 +25,6 @@ class ValidEmailValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

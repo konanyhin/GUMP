@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class BasicTagsFilterTest extends BaseTestCase
 {
-    const FILTER = 'basic_tags';
+    public const FILTER = 'basic_tags';
 
     /**
      * @dataProvider successProvider
@@ -28,7 +26,7 @@ class BasicTagsFilterTest extends BaseTestCase
     public function successProvider()
     {
         return [
-            ['<script>alert(1);</script>hello', 'alert(1);hello']
+            ['<script>alert(1);</script>hello', 'alert(1);hello'],
         ];
     }
 }

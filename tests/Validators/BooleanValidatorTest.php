@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class BooleanValidatorTest extends BaseTestCase
 {
-    const RULE = 'boolean';
+    public const RULE = 'boolean';
 
     /**
      * @dataProvider successProvider
@@ -37,7 +35,7 @@ class BooleanValidatorTest extends BaseTestCase
             ['yes'],
             ['no'],
             ['on'],
-            ['off']
+            ['off'],
         ];
     }
 
@@ -71,7 +69,7 @@ class BooleanValidatorTest extends BaseTestCase
             [ 'randomString' ],
             [ 111 ],
             [ 'TRUE' ],
-            [ 'False' ]
+            [ 'False' ],
         ];
     }
 

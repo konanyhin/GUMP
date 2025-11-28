@@ -3,7 +3,6 @@
 namespace Tests;
 
 use GUMP;
-use Exception;
 
 /**
  * Class GetErrorsArrayTest
@@ -15,9 +14,9 @@ class GetReadableErrorsTest extends BaseTestCase
     public function testReturnsEmptyArrayWhenNoErrors()
     {
         $result = $this->gump->validate([
-            'test_number' => '123'
+            'test_number' => '123',
         ], [
-            'test_number' => 'numeric'
+            'test_number' => 'numeric',
         ]);
 
         $this->assertEquals([], $this->gump->get_readable_errors());
@@ -26,9 +25,9 @@ class GetReadableErrorsTest extends BaseTestCase
     public function testReturnsEmptyStringWhenNoErrorsAndConvertingToString()
     {
         $result = $this->gump->validate([
-            'test_number' => '123'
+            'test_number' => '123',
         ], [
-            'test_number' => 'numeric'
+            'test_number' => 'numeric',
         ]);
 
         $this->assertEquals('', $this->gump->get_readable_errors(true));
@@ -37,13 +36,13 @@ class GetReadableErrorsTest extends BaseTestCase
     public function testReturnsArray()
     {
         $result = $this->gump->validate([
-            'test_number' => 'text'
+            'test_number' => 'text',
         ], [
-            'test_number' => 'numeric'
+            'test_number' => 'numeric',
         ]);
 
         $this->assertEquals([
-            "The <span class=\"gump-field\">Test Number</span> field must be a number"
+            'The <span class="gump-field">Test Number</span> field must be a number',
         ], $this->gump->get_readable_errors());
     }
 
@@ -56,7 +55,7 @@ class GetReadableErrorsTest extends BaseTestCase
         ], [
             'test_number' => 'numeric',
             'test_name' => 'valid_name',
-            'test_email' => 'valid_email'
+            'test_email' => 'valid_email',
         ]);
 
         $this->assertEquals(
@@ -72,13 +71,13 @@ class GetReadableErrorsTest extends BaseTestCase
         GUMP::set_field_name('testnumber', 'Test Num.');
 
         $result = $this->gump->validate([
-            'testnumber' => 'hey'
+            'testnumber' => 'hey',
         ], [
-            'testnumber' => 'numeric'
+            'testnumber' => 'numeric',
         ]);
 
         $this->assertEquals([
-            'The <span class="gump-field">Test Num.</span> field must be a number'
+            'The <span class="gump-field">Test Num.</span> field must be a number',
         ], $this->gump->get_readable_errors());
     }
 
@@ -89,13 +88,13 @@ class GetReadableErrorsTest extends BaseTestCase
 
         $result = $this->gump->validate([
             'test_number' => '111',
-            'test' => '1112'
+            'test' => '1112',
         ], [
-            'test_number' => 'equalsfield,test'
+            'test_number' => 'equalsfield,test',
         ]);
 
         $this->assertEquals([
-            'The <span class="gump-field">Test Num.</span> field does not equal The Other Test Field field'
+            'The <span class="gump-field">Test Num.</span> field does not equal The Other Test Field field',
         ], $this->gump->get_readable_errors());
     }
 
@@ -106,7 +105,7 @@ class GetReadableErrorsTest extends BaseTestCase
             'test_name' => '123',
         ], [
             'test_number' => 'numeric',
-            'test_name' => 'valid_name|numeric'
+            'test_name' => 'valid_name|numeric',
         ]);
 
         $this->assertEquals(
@@ -120,18 +119,18 @@ class GetReadableErrorsTest extends BaseTestCase
     {
         $this->gump->set_fields_error_messages([
             'test_number' => [
-                'between_len' => '{field} length MUST be between {param[0]} and {param[1]} !!!'
-            ]
+                'between_len' => '{field} length MUST be between {param[0]} and {param[1]} !!!',
+            ],
         ]);
 
         $this->gump->validate([
-            'test_number' => '123'
+            'test_number' => '123',
         ], [
-            'test_number' => 'between_len,1;2'
+            'test_number' => 'between_len,1;2',
         ]);
 
         $this->assertEquals([
-            '<span class="gump-field">Test Number</span> length MUST be between 1 and 2 !!!'
+            '<span class="gump-field">Test Number</span> length MUST be between 1 and 2 !!!',
         ], $this->gump->get_readable_errors());
     }
 }

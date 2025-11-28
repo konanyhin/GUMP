@@ -2,8 +2,8 @@
 
 namespace Tests\Validators;
 
-use Tests\BaseTestCase;
 use GUMP;
+use Tests\BaseTestCase;
 
 class FutureDateValidatorTest extends BaseTestCase
 {
@@ -11,9 +11,9 @@ class FutureDateValidatorTest extends BaseTestCase
     {
         $futureDate = date('Y-m-d', strtotime('+1 day'));
         $this->assertTrue(GUMP::is_valid([
-            'date' => $futureDate
+            'date' => $futureDate,
         ], [
-            'date' => 'future_date'
+            'date' => 'future_date',
         ]));
     }
 
@@ -21,9 +21,9 @@ class FutureDateValidatorTest extends BaseTestCase
     {
         $futureDateTime = date('Y-m-d H:i:s', strtotime('+1 hour'));
         $this->assertTrue(GUMP::is_valid([
-            'date' => $futureDateTime
+            'date' => $futureDateTime,
         ], [
-            'date' => 'future_date'
+            'date' => 'future_date',
         ]));
     }
 
@@ -31,9 +31,9 @@ class FutureDateValidatorTest extends BaseTestCase
     {
         $pastDate = date('Y-m-d', strtotime('-1 day'));
         $this->assertNotSame(true, GUMP::is_valid([
-            'date' => $pastDate
+            'date' => $pastDate,
         ], [
-            'date' => 'future_date'
+            'date' => 'future_date',
         ]));
     }
 
@@ -41,18 +41,18 @@ class FutureDateValidatorTest extends BaseTestCase
     {
         $currentDate = date('Y-m-d');
         $this->assertNotSame(true, GUMP::is_valid([
-            'date' => $currentDate
+            'date' => $currentDate,
         ], [
-            'date' => 'future_date'
+            'date' => 'future_date',
         ]));
     }
 
     public function testErrorWhenInvalidDate()
     {
         $this->assertNotSame(true, GUMP::is_valid([
-            'date' => 'invalid-date'
+            'date' => 'invalid-date',
         ], [
-            'date' => 'future_date'
+            'date' => 'future_date',
         ]));
     }
 }

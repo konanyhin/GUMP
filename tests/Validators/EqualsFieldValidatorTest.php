@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -17,9 +15,9 @@ class EqualsFieldValidatorTest extends BaseTestCase
     {
         $result = $this->gump->validate([
             'test' => 'string',
-            'the_other_field' => 'string'
+            'the_other_field' => 'string',
         ], [
-            'test' => 'equalsfield,the_other_field'
+            'test' => 'equalsfield,the_other_field',
         ]);
 
         $this->assertTrue($result);
@@ -29,9 +27,9 @@ class EqualsFieldValidatorTest extends BaseTestCase
     {
         $result = $this->gump->validate([
             'test' => 'string',
-            'the_other_field' => 'different_string'
+            'the_other_field' => 'different_string',
         ], [
-            'test' => 'equalsfield,the_other_field'
+            'test' => 'equalsfield,the_other_field',
         ]);
 
         $this->assertNotTrue($result);

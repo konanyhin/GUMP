@@ -2,9 +2,9 @@
 
 namespace Tests\Helpers;
 
+use ArrayAccess;
 use GUMP\ArrayHelpers;
 use PHPUnit\Framework\TestCase;
-use ArrayAccess;
 
 /**
  * Class ArrayHelpersTest
@@ -19,7 +19,7 @@ class ArrayHelpersTest extends TestCase
     public function testDataGetWithSimpleKey()
     {
         $data = ['name' => 'John', 'age' => 30];
-        
+
         $this->assertEquals('John', ArrayHelpers::data_get($data, 'name'));
         $this->assertEquals(30, ArrayHelpers::data_get($data, 'age'));
         $this->assertNull(ArrayHelpers::data_get($data, 'nonexistent'));
@@ -31,7 +31,7 @@ class ArrayHelpersTest extends TestCase
     public function testDataGetWithDefault()
     {
         $data = ['name' => 'John'];
-        
+
         $this->assertEquals('Unknown', ArrayHelpers::data_get($data, 'nonexistent', 'Unknown'));
         $this->assertEquals('John', ArrayHelpers::data_get($data, 'name', 'Default'));
     }
@@ -45,11 +45,11 @@ class ArrayHelpersTest extends TestCase
             'user' => [
                 'profile' => [
                     'name' => 'John Doe',
-                    'email' => 'john@example.com'
-                ]
-            ]
+                    'email' => 'john@example.com',
+                ],
+            ],
         ];
-        
+
         $this->assertEquals('John Doe', ArrayHelpers::data_get($data, 'user.profile.name'));
         $this->assertEquals('john@example.com', ArrayHelpers::data_get($data, 'user.profile.email'));
         $this->assertNull(ArrayHelpers::data_get($data, 'user.profile.phone'));
@@ -61,7 +61,7 @@ class ArrayHelpersTest extends TestCase
     public function testDataGetWithNullKey()
     {
         $data = ['name' => 'John', 'age' => 30];
-        
+
         $this->assertEquals($data, ArrayHelpers::data_get($data, null));
     }
 
@@ -73,11 +73,11 @@ class ArrayHelpersTest extends TestCase
         $data = [
             'user' => [
                 'profile' => [
-                    'name' => 'John Doe'
-                ]
-            ]
+                    'name' => 'John Doe',
+                ],
+            ],
         ];
-        
+
         $result = ArrayHelpers::data_get($data, ['user', 'profile', 'name']);
         $this->assertEquals('John Doe', $result);
     }
@@ -91,13 +91,13 @@ class ArrayHelpersTest extends TestCase
             'users' => [
                 ['name' => 'John', 'age' => 30],
                 ['name' => 'Jane', 'age' => 25],
-                ['name' => 'Bob', 'age' => 35]
-            ]
+                ['name' => 'Bob', 'age' => 35],
+            ],
         ];
-        
+
         $names = ArrayHelpers::data_get($data, 'users.*.name');
         $this->assertEquals(['John', 'Jane', 'Bob'], $names);
-        
+
         $ages = ArrayHelpers::data_get($data, 'users.*.age');
         $this->assertEquals([30, 25, 35], $ages);
     }
@@ -112,18 +112,18 @@ class ArrayHelpersTest extends TestCase
                 [
                     'users' => [
                         ['name' => 'John'],
-                        ['name' => 'Jane']
-                    ]
+                        ['name' => 'Jane'],
+                    ],
                 ],
                 [
                     'users' => [
                         ['name' => 'Bob'],
-                        ['name' => 'Alice']
-                    ]
-                ]
-            ]
+                        ['name' => 'Alice'],
+                    ],
+                ],
+            ],
         ];
-        
+
         $names = ArrayHelpers::data_get($data, 'groups.*.users.*.name');
         $this->assertEquals(['John', 'Jane', 'Bob', 'Alice'], $names);
     }
@@ -137,7 +137,7 @@ class ArrayHelpersTest extends TestCase
         $obj->name = 'John';
         $obj->profile = new \stdClass();
         $obj->profile->email = 'john@example.com';
-        
+
         $this->assertEquals('John', ArrayHelpers::data_get($obj, 'name'));
         $this->assertEquals('john@example.com', ArrayHelpers::data_get($obj, 'profile.email'));
         $this->assertNull(ArrayHelpers::data_get($obj, 'nonexistent'));
@@ -149,7 +149,7 @@ class ArrayHelpersTest extends TestCase
     public function testDataGetWithNonArrayAndWildcard()
     {
         $data = 'string';
-        
+
         $this->assertEquals('default', ArrayHelpers::data_get($data, '*.key', 'default'));
     }
 
@@ -188,7 +188,7 @@ class ArrayHelpersTest extends TestCase
     public function testExistsWithArray()
     {
         $data = ['key1' => 'value1', 'key2' => null, 0 => 'zero'];
-        
+
         $this->assertTrue(ArrayHelpers::exists($data, 'key1'));
         $this->assertTrue(ArrayHelpers::exists($data, 'key2')); // null values still exist
         $this->assertTrue(ArrayHelpers::exists($data, 0));
@@ -202,7 +202,7 @@ class ArrayHelpersTest extends TestCase
     {
         $arrayAccess = new TestArrayAccess();
         $arrayAccess['key1'] = 'value1';
-        
+
         $this->assertTrue(ArrayHelpers::exists($arrayAccess, 'key1'));
         $this->assertFalse(ArrayHelpers::exists($arrayAccess, 'nonexistent'));
     }
@@ -215,9 +215,9 @@ class ArrayHelpersTest extends TestCase
         $data = [
             ['a', 'b'],
             ['c', 'd'],
-            ['e', 'f']
+            ['e', 'f'],
         ];
-        
+
         $result = ArrayHelpers::collapse($data);
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f'], $result);
     }
@@ -232,9 +232,9 @@ class ArrayHelpersTest extends TestCase
             'string', // non-array should be skipped
             ['c', 'd'],
             123, // non-array should be skipped
-            ['e', 'f']
+            ['e', 'f'],
         ];
-        
+
         $result = ArrayHelpers::collapse($data);
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f'], $result);
     }
@@ -248,9 +248,9 @@ class ArrayHelpersTest extends TestCase
             [],
             ['a', 'b'],
             [],
-            ['c']
+            ['c'],
         ];
-        
+
         $result = ArrayHelpers::collapse($data);
         $this->assertEquals(['a', 'b', 'c'], $result);
     }
@@ -262,9 +262,9 @@ class ArrayHelpersTest extends TestCase
     {
         $data = [
             ['name' => 'John', 'age' => 30],
-            ['city' => 'NYC', 'country' => 'USA']
+            ['city' => 'NYC', 'country' => 'USA'],
         ];
-        
+
         $result = ArrayHelpers::collapse($data);
         $expected = ['name' => 'John', 'age' => 30, 'city' => 'NYC', 'country' => 'USA'];
         $this->assertEquals($expected, $result);
@@ -277,9 +277,9 @@ class ArrayHelpersTest extends TestCase
     {
         $data = [
             [['nested1'], ['nested2']],
-            [['nested3'], ['nested4']]
+            [['nested3'], ['nested4']],
         ];
-        
+
         $result = ArrayHelpers::collapse($data);
         $expected = [['nested1'], ['nested2'], ['nested3'], ['nested4']];
         $this->assertEquals($expected, $result);
@@ -295,13 +295,13 @@ class ArrayHelpersTest extends TestCase
                 'level2' => [
                     'level3' => [
                         'level4' => [
-                            'level5' => 'deep_value'
-                        ]
-                    ]
-                ]
-            ]
+                            'level5' => 'deep_value',
+                        ],
+                    ],
+                ],
+            ],
         ];
-        
+
         $result = ArrayHelpers::data_get($data, 'level1.level2.level3.level4.level5');
         $this->assertEquals('deep_value', $result);
     }
@@ -315,10 +315,10 @@ class ArrayHelpersTest extends TestCase
             '0' => 'zero',
             '1' => 'one',
             '2' => [
-                'nested' => 'value'
-            ]
+                'nested' => 'value',
+            ],
         ];
-        
+
         $this->assertEquals('zero', ArrayHelpers::data_get($data, '0'));
         $this->assertEquals('one', ArrayHelpers::data_get($data, '1'));
         $this->assertEquals('value', ArrayHelpers::data_get($data, '2.nested'));

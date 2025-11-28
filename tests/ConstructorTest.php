@@ -2,9 +2,8 @@
 
 namespace Tests;
 
-use GUMP;
 use Exception;
-use Mockery as m;
+use GUMP;
 
 /**
  * Class ConstructorTest

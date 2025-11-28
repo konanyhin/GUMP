@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => '{field} الزامی میباشد',
     'valid_email'              => '{field} باید یک آدرس ایمیل معتبر باشد ',
     'max_len'                  => '{field} باید حد اکثر {param} کاراکتر یا کمتر باشد',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => '{field} باید در فرمت camelCase باشد',
     'snake_case'               => '{field} باید در فرمت snake_case باشد',
     'url_slug'                 => '{field} باید فرمت URL slug معتبر باشد',
-);
+];

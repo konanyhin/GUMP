@@ -2,68 +2,68 @@
 
 namespace Tests\Validators;
 
-use Tests\BaseTestCase;
 use GUMP;
+use Tests\BaseTestCase;
 
 class LatitudeValidatorTest extends BaseTestCase
 {
     public function testSuccessWhenValidLatitude()
     {
         $this->assertTrue(GUMP::is_valid([
-            'lat' => '40.7128'
+            'lat' => '40.7128',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
     }
 
     public function testSuccessWhenValidNegativeLatitude()
     {
         $this->assertTrue(GUMP::is_valid([
-            'lat' => '-33.8688'
+            'lat' => '-33.8688',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
     }
 
     public function testSuccessWhenValidBoundaryLatitude()
     {
         $this->assertTrue(GUMP::is_valid([
-            'lat' => '90'
+            'lat' => '90',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
 
         $this->assertTrue(GUMP::is_valid([
-            'lat' => '-90'
+            'lat' => '-90',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
     }
 
     public function testErrorWhenLatitudeTooHigh()
     {
         $this->assertNotSame(true, GUMP::is_valid([
-            'lat' => '91'
+            'lat' => '91',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
     }
 
     public function testErrorWhenLatitudeTooLow()
     {
         $this->assertNotSame(true, GUMP::is_valid([
-            'lat' => '-91'
+            'lat' => '-91',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
     }
 
     public function testErrorWhenNotNumeric()
     {
         $this->assertNotSame(true, GUMP::is_valid([
-            'lat' => 'not-a-number'
+            'lat' => 'not-a-number',
         ], [
-            'lat' => 'latitude'
+            'lat' => 'latitude',
         ]));
     }
 }

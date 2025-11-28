@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,12 +11,12 @@ use Tests\BaseTestCase;
  */
 class ExtensionValidatorTest extends BaseTestCase
 {
-    const RULE = 'extension,png;jpg;gif';
+    public const RULE = 'extension,png;jpg;gif';
 
     public function testItSucceedsWhenThereIsNoInputFile()
     {
         $result = $this->gump->validate([], [
-            'test' => self::RULE
+            'test' => self::RULE,
         ]);
 
         $this->assertTrue($result);
@@ -44,7 +42,7 @@ class ExtensionValidatorTest extends BaseTestCase
             'type' => 'image/png',
             'tmp_name' => '/tmp/phphjatI9',
             'error' => 0,
-            'size' => 22068
+            'size' => 22068,
         ];
 
         $this->assertTrue($this->validate(self::RULE, $input));
@@ -57,7 +55,7 @@ class ExtensionValidatorTest extends BaseTestCase
             'type' => 'application/pdf',
             'tmp_name' => '/tmp/phphjatI9',
             'error' => 0,
-            'size' => 22068
+            'size' => 22068,
         ];
 
         $this->assertNotTrue($this->validate(self::RULE, $input));
@@ -70,9 +68,48 @@ class ExtensionValidatorTest extends BaseTestCase
             'type' => 'image/png',
             'tmp_name' => '/tmp/phphjatI9',
             'error' => 4,
-            'size' => 22068
+            'size' => 22068,
         ];
 
         $this->assertNotTrue($this->validate(self::RULE, $input));
+    }
+
+    public function testItFailsWhenUploadErrorOccurred()
+    {
+        // Error code 1 = UPLOAD_ERR_INI_SIZE (file exceeds upload_max_filesize)
+        $input = [
+            'name' => 'screenshot.png',
+            'type' => 'image/png',
+            'tmp_name' => '/tmp/phphjatI9',
+            'error' => 1,
+            'size' => 0,
+        ];
+
+        $this->assertNotTrue($this->validate(self::RULE, $input));
+    }
+
+    public function testItFailsWhenPartialUploadErrorOccurred()
+    {
+        // Error code 3 = UPLOAD_ERR_PARTIAL (file was only partially uploaded)
+        $input = [
+            'name' => 'screenshot.png',
+            'type' => 'image/png',
+            'tmp_name' => '/tmp/phphjatI9',
+            'error' => 3,
+            'size' => 1000,
+        ];
+
+        $this->assertNotTrue($this->validate(self::RULE, $input));
+    }
+
+    public function testItFailsWhenInputIsNotArray()
+    {
+        $result = $this->gump->validate([
+            'test' => 'not-an-array',
+        ], [
+            'test' => self::RULE,
+        ]);
+
+        $this->assertNotTrue($result);
     }
 }

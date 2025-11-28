@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class StartsValidatorTest extends BaseTestCase
 {
-    const RULE = 'starts,tes';
+    public const RULE = 'starts,tes';
 
     /**
      * @dataProvider successProvider
@@ -49,6 +47,6 @@ class StartsValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

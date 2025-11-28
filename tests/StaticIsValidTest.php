@@ -3,7 +3,6 @@
 namespace Tests;
 
 use GUMP;
-use Exception;
 
 /**
  * Class StaticIsValidTest
@@ -15,9 +14,9 @@ class StaticIsValidTest extends BaseTestCase
     public function testOnSuccessReturnsTrue()
     {
         $result = GUMP::is_valid([
-            'test' => '123'
+            'test' => '123',
         ], [
-            'test' => 'numeric'
+            'test' => 'numeric',
         ]);
 
         $this->assertTrue($result);
@@ -26,15 +25,15 @@ class StaticIsValidTest extends BaseTestCase
     public function testOnFailureReturnsArrayWithErrors()
     {
         $result = GUMP::is_valid([
-            'test' => 'asd'
+            'test' => 'asd',
         ], [
-            'test' => 'numeric'
+            'test' => 'numeric',
         ], [
-            'test' => ['numeric' => '{field} must be a number please !!!']
+            'test' => ['numeric' => '{field} must be a number please !!!'],
         ]);
 
         $this->assertEquals([
-            '<span class="gump-field">Test</span> must be a number please !!!'
+            '<span class="gump-field">Test</span> must be a number please !!!',
         ], $result);
     }
 }

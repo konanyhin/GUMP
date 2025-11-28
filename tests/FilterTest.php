@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use GUMP;
 use Exception;
+use GUMP;
 
 /**
  * Class GetErrorsArrayTest
@@ -15,60 +15,60 @@ class FilterTest extends BaseTestCase
     public function testGumpFilterIsSuccessfullyApplied()
     {
         $result = $this->gump->filter([
-            'test' => 'text'
+            'test' => 'text',
         ], [
-            'test' => 'upper_case'
+            'test' => 'upper_case',
         ]);
 
         $this->assertEquals([
-            'test' => 'TEXT'
+            'test' => 'TEXT',
         ], $result);
     }
 
     public function testMoreThanOneFiltersAreSuccessfullyApplied()
     {
-        GUMP::add_filter("custom", function($value, array $params = []) {
+        GUMP::add_filter('custom', function ($value, array $params = []) {
             return strtolower($value);
         });
 
         $result = $this->gump->filter([
-            'test' => ' text '
+            'test' => ' text ',
         ], [
-            'test' => 'trim|upper_case|custom'
+            'test' => 'trim|upper_case|custom',
         ]);
 
         $this->assertEquals([
-            'test' => 'text'
+            'test' => 'text',
         ], $result);
     }
 
     public function testPHPNativeFilterIsSuccessfullyApplied()
     {
         $result = $this->gump->filter([
-            'test' => 'TEXT'
+            'test' => 'TEXT',
         ], [
-            'test' => 'strtolower'
+            'test' => 'strtolower',
         ]);
 
         $this->assertEquals([
-            'test' => 'text'
+            'test' => 'text',
         ], $result);
     }
 
     public function testCustomFilterIsSuccessfullyApplied()
     {
-        GUMP::add_filter("custom", function($value, array $params = []) {
+        GUMP::add_filter('custom', function ($value, array $params = []) {
             return strtoupper($value);
         });
 
         $result = $this->gump->filter([
-            'test' => 'text'
+            'test' => 'text',
         ], [
-            'test' => 'custom'
+            'test' => 'custom',
         ]);
 
         $this->assertEquals([
-            'test' => 'TEXT'
+            'test' => 'TEXT',
         ], $result);
     }
 
@@ -78,9 +78,9 @@ class FilterTest extends BaseTestCase
         $this->expectExceptionMessage("'custom' filter does not exist.");
 
         $this->gump->filter([
-            'test' => 'text'
+            'test' => 'text',
         ], [
-            'test' => 'custom'
+            'test' => 'custom',
         ]);
     }
 
@@ -88,7 +88,7 @@ class FilterTest extends BaseTestCase
     {
         $result = $this->gump->filter([
             'test' => 'text',
-            'other' => 'text'
+            'other' => 'text',
         ], [
             'non_existent' => 'upper_case',
             'other' => 'upper_case',
@@ -96,13 +96,13 @@ class FilterTest extends BaseTestCase
 
         $this->assertEquals([
             'test' => 'text',
-            'other' => 'TEXT'
+            'other' => 'TEXT',
         ], $result);
     }
 
     public function testRulesArrayFormatWithSimpleArrayParameters()
     {
-        GUMP::add_filter("custom", function($value, array $param) {
+        GUMP::add_filter('custom', function ($value, array $param) {
             return call_user_func($param[0], $value);
         });
 
@@ -147,42 +147,42 @@ class FilterTest extends BaseTestCase
         ], $result);
     }
 
-//    public function testNestedArrays()
-//    {
-//        $data = [
-//            'field0' => [' asd ', ''],
-//            'field1' => [
-//                'name' => ' test123 '
-//            ],
-//            'field2' => [
-//                [
-//                    'name' => ' 123 '
-//                ],
-//                [
-//                    'name' => ' test '
-//                ],
-//            ]
-//        ];
-//
-//        $result = $this->gump->filter($data, [
-//            'field0' => 'trim',
-//            'field1.name' => 'trim',
-//            'field2.*.name' => 'trim',
-//        ]);
-//
-//        $this->assertEquals([
-//            'field0' => ['asd', ''],
-//            'field1' => [
-//                'name' => 'test123'
-//            ],
-//            'field2' => [
-//                [
-//                    'name' => '123'
-//                ],
-//                [
-//                    'name' => 'test'
-//                ],
-//            ]
-//        ], $result);
-//    }
+    //    public function testNestedArrays()
+    //    {
+    //        $data = [
+    //            'field0' => [' asd ', ''],
+    //            'field1' => [
+    //                'name' => ' test123 '
+    //            ],
+    //            'field2' => [
+    //                [
+    //                    'name' => ' 123 '
+    //                ],
+    //                [
+    //                    'name' => ' test '
+    //                ],
+    //            ]
+    //        ];
+    //
+    //        $result = $this->gump->filter($data, [
+    //            'field0' => 'trim',
+    //            'field1.name' => 'trim',
+    //            'field2.*.name' => 'trim',
+    //        ]);
+    //
+    //        $this->assertEquals([
+    //            'field0' => ['asd', ''],
+    //            'field1' => [
+    //                'name' => 'test123'
+    //            ],
+    //            'field2' => [
+    //                [
+    //                    'name' => '123'
+    //                ],
+    //                [
+    //                    'name' => 'test'
+    //                ],
+    //            ]
+    //        ], $result);
+    //    }
 }

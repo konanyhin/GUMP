@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class ValidIpv6ValidatorTest extends BaseTestCase
 {
-    const RULE = 'valid_ipv6';
+    public const RULE = 'valid_ipv6';
 
     /**
      * @dataProvider successProvider
@@ -26,7 +24,7 @@ class ValidIpv6ValidatorTest extends BaseTestCase
     public function successProvider()
     {
         return [
-            [ '2001:0db8:85a3:08d3:1319:8a2e:0370:7334' ]
+            [ '2001:0db8:85a3:08d3:1319:8a2e:0370:7334' ],
         ];
     }
 
@@ -49,6 +47,6 @@ class ValidIpv6ValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

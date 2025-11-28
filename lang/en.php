@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => 'The {field} field is required',
     'valid_email'              => 'The {field} field must be a valid email address',
     'max_len'                  => 'The {field} field needs to be {param} characters or less',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => 'The {field} must be in camelCase format',
     'snake_case'               => 'The {field} must be in snake_case format',
     'url_slug'                 => 'The {field} must be a valid URL slug format',
-);
+];

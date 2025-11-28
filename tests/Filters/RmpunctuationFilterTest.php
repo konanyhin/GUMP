@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class RmpunctuationFilterTest extends BaseTestCase
 {
-    const FILTER = 'rmpunctuation';
+    public const FILTER = 'rmpunctuation';
 
     /**
      * @dataProvider successProvider

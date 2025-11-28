@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use GUMP;
 use Exception;
+use GUMP;
 
 /**
  * Class StaticAddFilterTest
@@ -14,14 +14,14 @@ class StaticAddFilterTest extends BaseTestCase
 {
     public function testItThrowsExceptionWhenFilterWithSameNameIsAdded()
     {
-        GUMP::add_filter("custom", function($value, array $params = []) {
+        GUMP::add_filter('custom', function ($value, array $params = []) {
             return strtoupper($value);
         });
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("'custom' filter is already defined.");
 
-        GUMP::add_filter("custom", function($value, array $params = []) {
+        GUMP::add_filter('custom', function ($value, array $params = []) {
             return strtoupper($value);
         });
     }

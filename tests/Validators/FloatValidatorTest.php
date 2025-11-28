@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class FloatValidatorTest extends BaseTestCase
 {
-    const RULE = 'float';
+    public const RULE = 'float';
 
     /**
      * @dataProvider successProvider
@@ -30,7 +28,7 @@ class FloatValidatorTest extends BaseTestCase
             [1.1],
             [ '1.1' ],
             [-1.1],
-            ['-1.1']
+            ['-1.1'],
         ];
     }
 
@@ -48,7 +46,7 @@ class FloatValidatorTest extends BaseTestCase
             [ '1,1' ],
             [ '1.0,0' ],
             [ '1,0.0' ],
-            [ 'text' ]
+            [ 'text' ],
         ];
     }
 }

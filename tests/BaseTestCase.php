@@ -2,11 +2,11 @@
 
 namespace Tests;
 
+use GUMP;
+use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophet;
-use GUMP;
 use ReflectionClass;
-use Mockery as m;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -24,14 +24,14 @@ abstract class BaseTestCase extends TestCase
 
     public function setUp(): void
     {
-        $this->prophet = new Prophet;
+        $this->prophet = new Prophet();
 
         $this->helpersMock = m::mock('overload:GUMP\EnvHelpers');
         $this->helpersMock->shouldReceive('file_exists')
             ->once()
             ->andReturnTrue();
 
-        $this->gump = new GUMP;
+        $this->gump = new GUMP();
     }
 
     protected function tearDown(): void
@@ -59,6 +59,7 @@ abstract class BaseTestCase extends TestCase
         $reflection = new ReflectionClass($obj);
         $property = $reflection->getProperty($prop);
         $property->setAccessible(true);
+
         return $property->getValue($obj);
     }
 
@@ -81,18 +82,18 @@ abstract class BaseTestCase extends TestCase
     public function validate($rule, $value)
     {
         return $this->gump->validate([
-            'test' => $value
+            'test' => $value,
         ], [
-            'test' => $rule
+            'test' => $rule,
         ]);
     }
 
     public function filter($rule, $value)
     {
         $result = $this->gump->filter([
-            'test' => $value
+            'test' => $value,
         ], [
-            'test' => $rule
+            'test' => $rule,
         ]);
 
         return $result['test'];

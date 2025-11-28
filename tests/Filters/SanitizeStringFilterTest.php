@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class SanitizeStringFilterTest extends BaseTestCase
 {
-    const FILTER = 'sanitize_string';
+    public const FILTER = 'sanitize_string';
 
     /**
      * @dataProvider successProvider

@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,12 +11,12 @@ use Tests\BaseTestCase;
  */
 class RequiredFileValidatorTest extends BaseTestCase
 {
-    const RULE = 'required_file';
+    public const RULE = 'required_file';
 
     public function testItFailsWhenThereIsNoInputFile()
     {
         $result = $this->gump->validate([], [
-            'test' => self::RULE
+            'test' => self::RULE,
         ]);
 
         $this->assertNotTrue($result);
@@ -31,7 +29,7 @@ class RequiredFileValidatorTest extends BaseTestCase
             'type' => 'image/png',
             'tmp_name' => '/tmp/phphjatI9',
             'error' => 0,
-            'size' => 22068
+            'size' => 22068,
         ];
 
         $this->assertTrue($this->validate(self::RULE, $input));
@@ -44,7 +42,7 @@ class RequiredFileValidatorTest extends BaseTestCase
             'type' => 'application/pdf',
             'tmp_name' => '/tmp/phphjatI9',
             'error' => 4,
-            'size' => 22068
+            'size' => 22068,
         ];
 
         $this->assertNotTrue($this->validate(self::RULE, $input));

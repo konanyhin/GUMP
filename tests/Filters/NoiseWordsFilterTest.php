@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class NoiseWordsFilterTest extends BaseTestCase
 {
-    const FILTER = 'noise_words';
+    public const FILTER = 'noise_words';
 
     /**
      * @dataProvider successProvider

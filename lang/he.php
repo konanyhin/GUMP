@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => 'שדה {field} הינו חובה',
     'valid_email'              => 'שדה {field} מוכרח להיות כתובת דוא"ל חוקית',
     'max_len'                  => 'שדה {field} מוכרח להיות {param} תווים או פחות',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => 'שדה {field} מוכרח להיות בפורמט camelCase',
     'snake_case'               => 'שדה {field} מוכרח להיות בפורמט snake_case',
     'url_slug'                 => 'שדה {field} מוכרח להיות בפורמט URL slug חוקי',
-);
+];

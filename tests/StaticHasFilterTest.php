@@ -29,7 +29,7 @@ class StaticHasFilterTest extends BaseTestCase
 
     public function testHasFilterWithCustomRule(): void
     {
-        GUMP::add_filter('test', function($value, array $params = []) {
+        GUMP::add_filter('test', function ($value, array $params = []) {
             return strtoupper($value);
         });
 
