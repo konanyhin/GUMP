@@ -12,7 +12,7 @@ use GUMP\EnvHelpers;
  *
  * @package GUMP
  * @version 1.x
- * @author Sean Nieuwoudt <sean@wixel.net>
+ * @author Sean Nieuwoudt <sean@underwulf.com>
  * @copyright 2013-2025 Sean Nieuwoudt
  * @license MIT
  * @link https://github.com/wixel/gump
