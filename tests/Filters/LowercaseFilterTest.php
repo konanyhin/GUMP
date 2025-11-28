@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class LowerFilterTest extends BaseTestCase
 {
-    const FILTER = 'lower_case';
+    public const FILTER = 'lower_case';
 
     /**
      * @dataProvider successProvider
@@ -27,7 +25,7 @@ class LowerFilterTest extends BaseTestCase
     public function successProvider()
     {
         return [
-            ['Hello', 'hello']
+            ['Hello', 'hello'],
         ];
     }
 }

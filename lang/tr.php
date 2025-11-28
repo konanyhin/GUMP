@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => '{field} alanı zorunludur',
     'valid_email'              => '{field} alanı geçerli bir e-posta adresi olmalı',
     'max_len'                  => '{field} alanı en fazla {param} karakter veya daha az olmalı',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => '{field} alanı camelCase formatında olmalı',
     'snake_case'               => '{field} alanı snake_case formatında olmalı',
     'url_slug'                 => '{field} alanı geçerli bir URL slug formatında olmalı',
-);
+];

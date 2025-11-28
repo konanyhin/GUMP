@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,11 +11,11 @@ use Tests\BaseTestCase;
  */
 class BooleanFilterTest extends BaseTestCase
 {
-    const FILTER = 'boolean';
+    public const FILTER = 'boolean';
 
-   /**
-     * @dataProvider successProvider
-     */
+    /**
+      * @dataProvider successProvider
+      */
     public function testSuccess($input, $expected)
     {
         $result = $this->filter(self::FILTER, $input);

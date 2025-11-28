@@ -30,7 +30,7 @@ class WorkflowTest extends BaseTestCase
             'phone' => '555-123-4567',
             'website' => 'https://johndoe.com',
             'bio' => '  Software developer with 5+ years experience.  ',
-            'terms_accepted' => 'yes'
+            'terms_accepted' => 'yes',
         ];
 
         $gump = new GUMP();
@@ -47,7 +47,7 @@ class WorkflowTest extends BaseTestCase
             'phone' => 'phone_number',
             'website' => 'valid_url',
             'bio' => 'max_len,500',
-            'terms_accepted' => 'required|boolean'
+            'terms_accepted' => 'required|boolean',
         ]);
 
         // Set filter rules
@@ -61,21 +61,21 @@ class WorkflowTest extends BaseTestCase
             'phone' => 'trim',
             'website' => 'trim',
             'bio' => 'trim|sanitize_string',
-            'terms_accepted' => 'boolean'
+            'terms_accepted' => 'boolean',
         ]);
 
         // Set custom error messages
         $gump->set_fields_error_messages([
             'username' => [
                 'required' => 'Please choose a username',
-                'alpha_numeric_dash' => 'Username can only contain letters, numbers, dashes and underscores'
+                'alpha_numeric_dash' => 'Username can only contain letters, numbers, dashes and underscores',
             ],
             'password_confirm' => [
-                'equalsfield' => 'Password confirmation must match your password'
+                'equalsfield' => 'Password confirmation must match your password',
             ],
             'terms_accepted' => [
-                'required' => 'You must accept the terms and conditions'
-            ]
+                'required' => 'You must accept the terms and conditions',
+            ],
         ]);
 
         $result = $gump->run($userData);
@@ -103,7 +103,7 @@ class WorkflowTest extends BaseTestCase
                 'city' => 'New York',
                 'state' => 'NY',
                 'postal_code' => '10001',
-                'country' => 'US'
+                'country' => 'US',
             ],
             'shipping_same_as_billing' => 'no',
             'shipping_address' => [
@@ -113,15 +113,15 @@ class WorkflowTest extends BaseTestCase
                 'city' => 'Brooklyn',
                 'state' => 'NY',
                 'postal_code' => '11201',
-                'country' => 'US'
+                'country' => 'US',
             ],
             'payment_method' => 'credit_card',
             'credit_card_number' => '4111111111111111',
             'items' => [
                 ['product_id' => 'PROD001', 'quantity' => 2, 'price' => 29.99],
-                ['product_id' => 'PROD002', 'quantity' => 1, 'price' => 49.99]
+                ['product_id' => 'PROD002', 'quantity' => 1, 'price' => 49.99],
             ],
-            'total_amount' => '109.97'
+            'total_amount' => '109.97',
         ];
 
         $validationRules = [
@@ -146,7 +146,7 @@ class WorkflowTest extends BaseTestCase
             'items.*.product_id' => 'required|alpha_numeric_dash',
             'items.*.quantity' => 'required|integer|min_numeric,1',
             'items.*.price' => 'required|float|min_numeric,0',
-            'total_amount' => 'required|float|min_numeric,0'
+            'total_amount' => 'required|float|min_numeric,0',
         ];
 
         $result = GUMP::is_valid($checkoutData, $validationRules);
@@ -170,8 +170,8 @@ class WorkflowTest extends BaseTestCase
                 'type' => 'application/pdf',
                 'size' => 1048576, // 1MB
                 'tmp_name' => '/tmp/php123abc',
-                'error' => 0
-            ]
+                'error' => 0,
+            ],
         ];
 
         $validationRules = [
@@ -179,14 +179,14 @@ class WorkflowTest extends BaseTestCase
             'description' => 'required|min_len,10|max_len,1000',
             'category' => 'required|contains,business;personal;academic;other',
             'tags' => 'required|valid_array_size_greater,0|valid_array_size_lesser,11',
-            'uploaded_file' => 'required_file|extension,pdf;doc;docx'
+            'uploaded_file' => 'required_file|extension,pdf;doc;docx',
         ];
 
         $filterRules = [
             'title' => 'trim|sanitize_string',
             'description' => 'trim|sanitize_string',
             'category' => 'trim|lower_case',
-            'tags' => 'sanitize_string'
+            'tags' => 'sanitize_string',
         ];
 
         $gump = new GUMP();
@@ -219,15 +219,15 @@ class WorkflowTest extends BaseTestCase
                         'preferences' => [
                             'theme' => 'dark',
                             'notifications' => true,
-                            'language' => 'en'
-                        ]
-                    ]
+                            'language' => 'en',
+                        ],
+                    ],
                 ],
                 'metadata' => [
                     'source' => 'web_app',
-                    'client_version' => '2.1.0'
-                ]
-            ]
+                    'client_version' => '2.1.0',
+                ],
+            ],
         ];
 
         $validationRules = [
@@ -242,7 +242,7 @@ class WorkflowTest extends BaseTestCase
             'data.user.profile.preferences.notifications' => 'required|boolean,strict',
             'data.user.profile.preferences.language' => 'required|exact_len,2|alpha',
             'data.metadata.source' => 'required|alpha_dash',
-            'data.metadata.client_version' => 'required|regex,/^\d+\.\d+\.\d+$/'
+            'data.metadata.client_version' => 'required|regex,/^\d+\.\d+\.\d+$/',
         ];
 
         $result = GUMP::is_valid($apiPayload, $validationRules);
@@ -261,7 +261,7 @@ class WorkflowTest extends BaseTestCase
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'john@example.com',
-            'phone' => '555-123-4567'
+            'phone' => '555-123-4567',
         ];
 
         $step1Rules = [
@@ -269,7 +269,7 @@ class WorkflowTest extends BaseTestCase
             'first_name' => 'required|alpha_space',
             'last_name' => 'required|alpha_space',
             'email' => 'required|valid_email',
-            'phone' => 'phone_number'
+            'phone' => 'phone_number',
         ];
 
         $step1Result = GUMP::is_valid($step1Data, $step1Rules);
@@ -282,7 +282,7 @@ class WorkflowTest extends BaseTestCase
             'city' => 'Anytown',
             'state' => 'CA',
             'zip' => '90210',
-            'country' => 'US'
+            'country' => 'US',
         ]);
 
         $step2Rules = array_merge($step1Rules, [
@@ -291,7 +291,7 @@ class WorkflowTest extends BaseTestCase
             'city' => 'required|alpha_space',
             'state' => 'required|exact_len,2|alpha',
             'zip' => 'required|regex,/^[0-9]{5}(-[0-9]{4})?$/',
-            'country' => 'required|exact_len,2|alpha'
+            'country' => 'required|exact_len,2|alpha',
         ]);
 
         $step2Result = GUMP::is_valid($step2Data, $step2Rules);
@@ -302,14 +302,14 @@ class WorkflowTest extends BaseTestCase
             'step' => '3',
             'newsletter' => 'yes',
             'terms' => 'on',
-            'marketing_emails' => 'no'
+            'marketing_emails' => 'no',
         ]);
 
         $step3Rules = array_merge($step2Rules, [
             'step' => 'required|exact_len,1|numeric',
             'newsletter' => 'required|boolean',
             'terms' => 'required|boolean',
-            'marketing_emails' => 'required|boolean'
+            'marketing_emails' => 'required|boolean',
         ]);
 
         $step3Result = GUMP::is_valid($step3Data, $step3Rules);
@@ -327,13 +327,13 @@ class WorkflowTest extends BaseTestCase
                 'employees' => [
                     ['name' => 'John Doe', 'email' => 'john@example.com', 'age' => 30],
                     ['name' => 'Jane Smith', 'email' => 'invalid-email', 'age' => 17], // Invalid email and age
-                    ['name' => 'Bob Johnson', 'email' => 'bob@example.com', 'age' => 45]
+                    ['name' => 'Bob Johnson', 'email' => 'bob@example.com', 'age' => 45],
                 ],
                 'departments' => [
                     'engineering' => ['budget' => 100000, 'head' => 'Alice Brown'],
-                    'marketing' => ['budget' => 50000, 'head' => ''] // Empty head name
-                ]
-            ]
+                    'marketing' => ['budget' => 50000, 'head' => ''], // Empty head name
+                ],
+            ],
         ];
 
         $validationRules = [
@@ -344,7 +344,7 @@ class WorkflowTest extends BaseTestCase
             'company.departments.engineering.budget' => 'required|integer|min_numeric,0',
             'company.departments.engineering.head' => 'required|valid_name',
             'company.departments.marketing.budget' => 'required|integer|min_numeric,0',
-            'company.departments.marketing.head' => 'required|valid_name'
+            'company.departments.marketing.head' => 'required|valid_name',
         ];
 
         $gump = new GUMP();
@@ -373,7 +373,7 @@ class WorkflowTest extends BaseTestCase
                 'name' => "Item $i",
                 'price' => rand(10, 1000) / 10,
                 'category' => ['business', 'personal', 'tech', 'health', 'education'][$i % 5], // Valid categories for alpha validator
-                'active' => $i % 2 === 0
+                'active' => $i % 2 === 0,
             ];
         }
 

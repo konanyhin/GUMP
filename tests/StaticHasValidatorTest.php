@@ -26,7 +26,7 @@ class StaticHasValidatorTest extends BaseTestCase
 
     public function testHasValidatorWithCustomRule()
     {
-        GUMP::add_validator("equals_string", function($field, array $input, array $params, $value) {
+        GUMP::add_validator('equals_string', function ($field, array $input, array $params, $value) {
             return $value === $params;
         }, 'Field {field} does not equal to {param}.');
 

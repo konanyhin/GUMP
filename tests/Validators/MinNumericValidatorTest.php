@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -30,6 +28,6 @@ class MinNumericValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate('min_numeric,2', ''));
+        $this->assertTrue($this->validate('min_numeric,2', ''));
     }
 }

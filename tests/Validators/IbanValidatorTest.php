@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class IbanValidatorTest extends BaseTestCase
 {
-    const RULE = 'iban';
+    public const RULE = 'iban';
 
     /**
      * @dataProvider successProvider

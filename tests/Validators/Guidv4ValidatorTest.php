@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class Guidv4ValidatorTest extends BaseTestCase
 {
-    const RULE = 'guidv4';
+    public const RULE = 'guidv4';
 
     /**
      * @dataProvider successProvider

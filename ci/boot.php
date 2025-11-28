@@ -1,4 +1,5 @@
 <?php
+
 require_once 'vendor/autoload.php';
 
 const README_FILE = 'README.md';
@@ -6,10 +7,11 @@ const README_FILE = 'README.md';
 const VALIDATORS_PREFIX = 'validate_';
 const FILTERS_PREFIX = 'filter_';
 
-function get_gump_validators() {
-    $reflect = new ReflectionClass("GUMP");
+function get_gump_validators()
+{
+    $reflect = new ReflectionClass('GUMP');
 
-    $validators = array_filter($reflect->getMethods(), function($method) {
+    $validators = array_filter($reflect->getMethods(), function ($method) {
         return strpos($method->name, VALIDATORS_PREFIX) !== false;
     });
 
@@ -22,7 +24,7 @@ function get_gump_validators() {
         $ruleExampleParameter = $docblock->getTag('example_parameter');
 
         $item = [
-            'description' => $ruleDescription
+            'description' => $ruleDescription,
         ];
 
         if (!is_null($ruleExampleParameter)) {
@@ -37,7 +39,8 @@ function get_gump_validators() {
     return $result;
 }
 
-function get_docs_validators(string $readmePath) {
+function get_docs_validators(string $readmePath)
+{
     $readmeContents = file_get_contents($readmePath);
 
     preg_match_all('/<div id="available_validators">(.*?)<.div>/ms', $readmeContents, $outerMatches);
@@ -56,19 +59,20 @@ function get_docs_validators(string $readmePath) {
 
         $result[$ruleMatch[1]] = [
             'rule' => $rawRule,
-            'description' => trim($matches[2][$key])
+            'description' => trim($matches[2][$key]),
         ];
     }
 
     return $result;
 }
 
-function get_gump_filters() {
-    $reflect = new ReflectionClass("GUMP");
+function get_gump_filters()
+{
+    $reflect = new ReflectionClass('GUMP');
 
     $methodsToIgnore = ['filter_input', 'filter_rules', 'filter_to_method'];
 
-    $filters = array_filter($reflect->getMethods(), function($method) use($methodsToIgnore) {
+    $filters = array_filter($reflect->getMethods(), function ($method) use ($methodsToIgnore) {
         return strpos($method->name, FILTERS_PREFIX) === 0 && !in_array($method->name, $methodsToIgnore);
     });
 
@@ -81,7 +85,7 @@ function get_gump_filters() {
         $ruleExampleParameter = $docblock->getTag('example_parameter');
 
         $item = [
-            'description' => $ruleDescription
+            'description' => $ruleDescription,
         ];
 
         if (!is_null($ruleExampleParameter)) {
@@ -96,8 +100,8 @@ function get_gump_filters() {
     return $result;
 }
 
-
-function get_docs_filters(string $readmePath) {
+function get_docs_filters(string $readmePath)
+{
     $readmeContents = file_get_contents($readmePath);
 
     preg_match_all('/<div id="available_filters">(.*?)<.div>/ms', $readmeContents, $outerMatches);
@@ -116,10 +120,9 @@ function get_docs_filters(string $readmePath) {
 
         $result[$ruleMatch[1]] = [
             'rule' => $rawRule,
-            'description' => trim($matches[2][$key])
+            'description' => trim($matches[2][$key]),
         ];
     }
 
     return $result;
 }
-

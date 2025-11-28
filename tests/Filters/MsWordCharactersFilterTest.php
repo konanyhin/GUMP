@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class MsWordCharactersFilterTest extends BaseTestCase
 {
-    const FILTER = 'ms_word_characters';
+    public const FILTER = 'ms_word_characters';
 
     /**
      * @dataProvider successProvider

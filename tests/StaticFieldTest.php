@@ -3,7 +3,6 @@
 namespace Tests;
 
 use GUMP;
-use Exception;
 
 /**
  * Class StaticFieldTest
@@ -12,12 +11,11 @@ use Exception;
  */
 class StaticFieldTest extends BaseTestCase
 {
-
     public function testFieldStaticCallRetrievesValueIfKeyExists()
     {
         $keysValues = [
             'numeric' => 'Field should be numeric',
-            'min_len' => 'Field length must be higher than what it is now'
+            'min_len' => 'Field length must be higher than what it is now',
         ];
 
         $result = GUMP::field('numeric', $keysValues);
@@ -29,7 +27,7 @@ class StaticFieldTest extends BaseTestCase
     {
         $keysValues = [
             'numeric' => 'Field should be numeric',
-            'min_len' => 'Field length must be higher than what it is now'
+            'min_len' => 'Field length must be higher than what it is now',
         ];
 
         $result = GUMP::field('input_field', $keysValues, 'Default error message');

@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class SanitizeEmailFilterTest extends BaseTestCase
 {
-    const FILTER = 'sanitize_email';
+    public const FILTER = 'sanitize_email';
 
     /**
      * @dataProvider successProvider

@@ -2,10 +2,7 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
-use Mockery as m;
 
 /**
  * Class MaxLenValidatorTest
@@ -31,6 +28,6 @@ class MaxLenValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate('max_len,2', ''));
+        $this->assertTrue($this->validate('max_len,2', ''));
     }
 }

@@ -2,11 +2,7 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
-
-use Mockery as m;
 
 /**
  * Class RegexValidatorTest
@@ -15,14 +11,14 @@ use Mockery as m;
  */
 class RegexValidatorTest extends BaseTestCase
 {
-    const RULE = 'regex,/test-[0-9]{3}/';
+    public const RULE = 'regex,/test-[0-9]{3}/';
 
     public function testExpressionMatchesIsSuccess()
     {
         $result = $this->gump->validate([
             'test' => 'test-123',
         ], [
-            'test' => self::RULE
+            'test' => self::RULE,
         ]);
 
         $this->assertTrue($result);
@@ -33,7 +29,7 @@ class RegexValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => 'test-12',
         ], [
-            'test' => self::RULE
+            'test' => self::RULE,
         ]);
 
         $this->assertNotTrue($result);
@@ -41,13 +37,13 @@ class RegexValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 
     public function testRegexWithPipeArrayFormat()
     {
         $result = $this->gump->validate([
-            'some_field' => 'test|123'
+            'some_field' => 'test|123',
         ], [
             'some_field' => ['required', 'regex' => '/test\|[0-9]{3}/'],
         ]);

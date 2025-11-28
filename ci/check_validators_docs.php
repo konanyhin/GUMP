@@ -1,4 +1,5 @@
 <?php
+
 require_once 'ci/boot.php';
 
 $docs = get_docs_validators(README_FILE);

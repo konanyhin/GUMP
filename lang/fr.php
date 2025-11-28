@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'             => 'Le champ {field} est obligatoire',
     'valid_email'          => 'Le champ {field} doit &#234;tre un email valide',
     'max_len'              => 'Le champ {field} doit avoir un nombre de caract&#232;re de {param} ou moins',
@@ -40,7 +40,7 @@ return array(
     'iban'                 => 'Le champ {field} doit contenir un IBAN valide',
     'phone_number'         => 'Le champ {field} doit contenir un num&#233;ro de t&#233;l&#233;phone valide',
     'regex'                => 'Le champ {field} doit contenir une valeur valide',
-    'valid_array_size_greater'=> 'Le champ {field} doit être un tableau dont la taille est supérieure ou égale à {param}',
+    'valid_array_size_greater' => 'Le champ {field} doit être un tableau dont la taille est supérieure ou égale à {param}',
     'valid_array_size_lesser' => 'Le champ {field} doit être un tableau dont la taille est inférieure ou égale à {param}',
     'valid_array_size_equal'  => 'Le champ {field} doit être un tableau dont la taille est égale à {param}',
     'valid_json_string'    => 'Le champ {field} doit avoir un format JSON',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => 'Le champ {field} doit être au format camelCase',
     'snake_case'               => 'Le champ {field} doit être au format snake_case',
     'url_slug'                 => 'Le champ {field} doit être un format de slug d\'URL valide',
-);
+];

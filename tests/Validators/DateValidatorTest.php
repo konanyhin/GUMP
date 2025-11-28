@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class DateValidatorTest extends BaseTestCase
 {
-    const RULE = 'date';
+    public const RULE = 'date';
 
     /**
      * @dataProvider successProvider

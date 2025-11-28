@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => 'La kampo “{field}” estas deviga',
     'valid_email'              => 'La kampo “{field}” devas enhavi validan retadreson',
     'max_len'                  => 'La kampo “{field}” devas enhavi maksimume {param} signojn',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => 'La kampo "{field}" devas esti en camelCase formato',
     'snake_case'               => 'La kampo "{field}" devas esti en snake_case formato',
     'url_slug'                 => 'La kampo "{field}" devas esti valida URL-slug formato',
-);
+];

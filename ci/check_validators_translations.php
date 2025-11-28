@@ -1,4 +1,5 @@
 <?php
+
 require_once 'ci/boot.php';
 
 $validators = array_keys(get_gump_validators());
@@ -12,9 +13,9 @@ $totalDeprecatedTranslations = 0;
 
 foreach ($languages as $language) {
 
-    $translations = array_map(function($item) {
+    $translations = array_map(function ($item) {
         return str_replace('validate_', '', $item);
-//    }, array_keys(require 'lang/en.php'));
+        //    }, array_keys(require 'lang/en.php'));
     }, array_keys(require 'lang/'.$language));
 
     $missingTranslations = array_diff($validators, $translations);

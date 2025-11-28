@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => 'Το πεδίο {field} είναι απαραίτητο',
     'valid_email'              => 'Το πεδίο {field} πρέπει να είναι μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου',
     'max_len'                  => 'Το πεδίο {field} πρέπει να είναι {param} χαρακτήρες ή λιγότεροι',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => 'Το πεδίο {field} πρέπει να είναι σε μορφή camelCase',
     'snake_case'               => 'Το πεδίο {field} πρέπει να είναι σε μορφή snake_case',
     'url_slug'                 => 'Το πεδίο {field} πρέπει να είναι έγκυρη μορφή URL slug',
-);
+];

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Generate appropriate PHPUnit configuration based on version
  */

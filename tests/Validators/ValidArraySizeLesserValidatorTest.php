@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class ValidArraySizeLesserValidatorTest extends BaseTestCase
 {
-    const RULE = 'valid_array_size_lesser,3';
+    public const RULE = 'valid_array_size_lesser,3';
 
     public function testWhenEqualIsSuccess()
     {
@@ -32,6 +30,6 @@ class ValidArraySizeLesserValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, []));
+        $this->assertTrue($this->validate(self::RULE, []));
     }
 }

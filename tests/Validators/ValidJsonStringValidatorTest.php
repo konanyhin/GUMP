@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class ValidJsonStringValidatorTest extends BaseTestCase
 {
-    const RULE = 'valid_json_string';
+    public const RULE = 'valid_json_string';
 
     /**
      * @dataProvider successProvider
@@ -51,6 +49,6 @@ class ValidJsonStringValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate(self::RULE, ''));
+        $this->assertTrue($this->validate(self::RULE, ''));
     }
 }

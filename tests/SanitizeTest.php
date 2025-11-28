@@ -2,9 +2,6 @@
 
 namespace Tests;
 
-use GUMP;
-use Exception;
-
 /**
  * Class SanitizeTest
  *
@@ -30,7 +27,7 @@ class SanitizeTest extends BaseTestCase
         ]);
 
         $this->assertEquals([
-            'whitelisted_field' => ['key' => "text"],
+            'whitelisted_field' => ['key' => 'text'],
         ], $result);
     }
 
@@ -38,7 +35,7 @@ class SanitizeTest extends BaseTestCase
     {
         $result = $this->gump->sanitize([
             'whitelisted_field' => "text\r",
-            'test2' => "Žluťoučký kůň",
+            'test2' => 'Žluťoučký kůň',
         ], ['whitelisted_field']);
 
         $this->assertEquals([

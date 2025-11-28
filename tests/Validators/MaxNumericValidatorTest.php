@@ -2,8 +2,6 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -30,6 +28,6 @@ class MaxNumericValidatorTest extends BaseTestCase
 
     public function testWhenInputIsEmptyAndNotRequiredIsSuccess()
     {
-         $this->assertTrue($this->validate('max_numeric,2', ''));
+        $this->assertTrue($this->validate('max_numeric,2', ''));
     }
 }

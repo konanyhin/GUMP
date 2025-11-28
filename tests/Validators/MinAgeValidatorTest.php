@@ -2,11 +2,9 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
-use Tests\BaseTestCase;
-
 use Mockery as m;
+
+use Tests\BaseTestCase;
 
 /**
  * Class MinAgeValidatorTest
@@ -27,11 +25,10 @@ class MinAgeValidatorTest extends BaseTestCase
             ->with('Y-m-d')
             ->andReturn('2020-06-16');
 
-
         $result = $this->gump->validate([
             'test' => '1997-06-16',
         ], [
-            'test' => 'min_age,23'
+            'test' => 'min_age,23',
         ]);
 
         $this->assertTrue($result);
@@ -52,7 +49,7 @@ class MinAgeValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => '1997-06-16',
         ], [
-            'test' => 'min_age,23'
+            'test' => 'min_age,23',
         ]);
 
         $this->assertTrue($result);
@@ -60,7 +57,6 @@ class MinAgeValidatorTest extends BaseTestCase
 
     public function testOneDayBeforeBirthdayFails()
     {
-
 
         $this->helpersMock->shouldReceive('date')
             ->once()
@@ -75,7 +71,7 @@ class MinAgeValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => '1997-06-16',
         ], [
-            'test' => 'min_age,23'
+            'test' => 'min_age,23',
         ]);
 
         $this->assertNotTrue($result);
@@ -98,7 +94,7 @@ class MinAgeValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => '',
         ], [
-            'test' => 'min_age,23'
+            'test' => 'min_age,23',
         ]);
 
         $this->assertTrue($result);

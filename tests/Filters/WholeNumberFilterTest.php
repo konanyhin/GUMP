@@ -2,8 +2,6 @@
 
 namespace Tests\Filters;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
 
 /**
@@ -13,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class WholeNumberFilterTest extends BaseTestCase
 {
-    const FILTER = 'whole_number';
+    public const FILTER = 'whole_number';
 
     /**
      * @dataProvider successProvider

@@ -2,10 +2,7 @@
 
 namespace Tests\Validators;
 
-use GUMP;
-use Exception;
 use Tests\BaseTestCase;
-use Mockery as m;
 
 /**
  * Class UrlExistsValidatorTest
@@ -24,7 +21,7 @@ class UrlExistsValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => 'https://google.es',
         ], [
-            'test' => 'url_exists'
+            'test' => 'url_exists',
         ]);
 
         $this->assertTrue($result);
@@ -40,7 +37,7 @@ class UrlExistsValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => 'https://google.es',
         ], [
-            'test' => 'url_exists'
+            'test' => 'url_exists',
         ]);
 
         $this->assertNotTrue($result);
@@ -51,7 +48,7 @@ class UrlExistsValidatorTest extends BaseTestCase
         $result = $this->gump->validate([
             'test' => '',
         ], [
-            'test' => 'url_exists'
+            'test' => 'url_exists',
         ]);
 
         $this->assertTrue($result);

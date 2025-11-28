@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => '{field}フィールドは必須です',
     'valid_email'              => '{field}フィールドはメールアドレス形式でなければいけません',
     'max_len'                  => '{field}フィールドは{param}文字以下でなければいけません',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => '{field}フィールドはcamelCase形式でなければいけません',
     'snake_case'               => '{field}フィールドはsnake_case形式でなければいけません',
     'url_slug'                 => '{field}フィールドは有効なURLスラグ形式でなければいけません',
-);
+];

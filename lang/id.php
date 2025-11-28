@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => 'Bagian {field} harus diisi',
     'valid_email'              => 'Bagian {field} harus berisi alamat email yang benar',
     'max_len'                  => 'Bagian {field} harus memiliki {param} karakter atau kurang',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => 'Bagian {field} harus dalam format camelCase',
     'snake_case'               => 'Bagian {field} harus dalam format snake_case',
     'url_slug'                 => 'Bagian {field} harus berupa format URL slug yang valid',
-);
+];

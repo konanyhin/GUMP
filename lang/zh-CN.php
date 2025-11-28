@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'required'                 => '字段 {field} 必填',
     'valid_email'              => '字段 {field} 必须是一个有效的邮箱地址',
     'max_len'                  => '字段 {field} 不能大于 {param} 个字符',
@@ -91,4 +91,4 @@ return array(
     'camel_case'               => '字段 {field} 必须是驼峰命名格式',
     'snake_case'               => '字段 {field} 必须是下划线命名格式',
     'url_slug'                 => '字段 {field} 必须是有效的URL slug格式',
-);
+];

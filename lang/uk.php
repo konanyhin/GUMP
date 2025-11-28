@@ -1,5 +1,6 @@
 <?php
-return array(
+
+return [
     'required' => 'Поле {field} є обов’язковим',
     'valid_email' => 'Поле {field} має бути Email адресою',
     'max_len' => 'У полі {field} має бути максимум {param} символів',
@@ -90,4 +91,4 @@ return array(
     'camel_case' => 'Поле {field} має бути в форматі camelCase',
     'snake_case' => 'Поле {field} має бути в форматі snake_case',
     'url_slug' => 'Поле {field} має бути дійсним форматом URL slug',
-);
+];
