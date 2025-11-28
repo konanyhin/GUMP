@@ -62,11 +62,11 @@ require_once 'path/to/gump.class.php';
 
 - **PHP**: 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2, 8.3, 8.4+
 - **Extensions**:
-    - `ext-mbstring` - Multibyte string support
-    - `ext-json` - JSON processing
-    - `ext-intl` - Internationalization functions
-    - `ext-bcmath` - Arbitrary precision mathematics
-    - `ext-iconv` - Character encoding conversion
+  - `ext-mbstring` - Multibyte string support
+  - `ext-json` - JSON processing
+  - `ext-intl` - Internationalization functions
+  - `ext-bcmath` - Arbitrary precision mathematics
+  - `ext-iconv` - Character encoding conversion
 
 ## Quick Start
 
@@ -288,6 +288,7 @@ GUMP provides **76 built-in validators** for comprehensive data validation:
 | **camel_case**                                                                 | Validate camelCase format.                                                                                                                                                                                |
 | **snake_case**                                                                 | Validate snake_case format.                                                                                                                                                                               |
 | **url_slug**                                                                   | Validate URL slug format.                                                                                                                                                                                 |
+
 </div>
 
 ## Comprehensive Validator Reference
@@ -448,6 +449,7 @@ $rules = [
 > **Pro Tips**:
 >
 > **Parameter Conflicts**: When using pipe (`|`) or semicolon (`;`) in validator parameters, use array format:
+>
 > ```php
 > // Wrong - will break parsing
 > 'field' => 'regex,/part|of;pattern/'
@@ -457,6 +459,7 @@ $rules = [
 > ```
 >
 > **Performance**: Put faster validators first in chains:
+>
 > ```php
 > // Good - required fails fast for empty values
 > 'email' => 'required|valid_email|max_len,255'
@@ -466,6 +469,7 @@ $rules = [
 > ```
 >
 > **Boolean Values**: The `boolean` filter accepts various formats:
+>
 > ```php
 > // All these become TRUE: '1', 1, 'true', true, 'yes', 'on'
 > // All these become FALSE: '0', 0, 'false', false, 'no', 'off', null, ''
@@ -479,7 +483,7 @@ GUMP includes 16 filters for data sanitization and transformation:
 
 | Filter                 | Description                                                                                                           |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| **noise_words**        | Replace noise words in a string (http://tax.cchgroup.com/help/Avoiding_noise_words_in_your_search.htm).               |
+| **noise_words**        | Replace noise words in a string (<http://tax.cchgroup.com/help/Avoiding_noise_words_in_your_search.htm>).               |
 | **rmpunctuation**      | Remove all known punctuation from a string.                                                                           |
 | **urlencode**          | Sanitize the string by urlencoding characters.                                                                        |
 | **htmlencode**         | Sanitize the string by converting HTML characters to their HTML entities.                                             |
@@ -495,6 +499,7 @@ GUMP includes 16 filters for data sanitization and transformation:
 | **upper_case**         | Converts to uppercase.                                                                                                |
 | **slug**               | Converts value to url-web-slugs.                                                                                      |
 | **trim**               | Remove spaces from the beginning and end of strings.                                                                  |
+
 </div>
 
 ### Filter Chaining Example
@@ -790,6 +795,12 @@ We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING
 - **Documentation** - Improve examples and guides
 - **Performance** - Optimize validation algorithms
 - **Security** - Security audits and improvements
+
+### Contributors
+
+<a href="https://github.com/wixel/gump/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wixel/gump" />
+</a>
 
 ## Security
 
